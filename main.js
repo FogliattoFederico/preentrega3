@@ -40,6 +40,7 @@ let totalCarrito = 0
 let articuloSeleccionado
 let cantidadSeleccionada
 
+
 articuloSeleccionado = Number(prompt("Seleccione el articulo que desea comprar \n 1.Playstation 5 \n 2.Xbox Series X \n 3.TV Lg Oled C2 \n 4.TV Sony A8G Oled \n 5.Notebook Lenovo Legion 7 \n 6.Notebook Asus Rog Strix G15 \n \n 0 para salir"))
 
 while(articuloSeleccionado < 0 || articuloSeleccionado > 6 || validarSoloNumeros(articuloSeleccionado) == false) {
@@ -60,8 +61,6 @@ if (articuloSeleccionado != 0){
     }
 }
 
-
-
 while (articuloSeleccionado != 0) {
 
     if(articuloSeleccionado == 1){
@@ -69,31 +68,21 @@ while (articuloSeleccionado != 0) {
                 carrito.push(producto1)
                 producto1.cantidadSeleccionada = cantidadSeleccionada
                 producto1.comprar(cantidadSeleccionada)
-                if(producto1.cantidad == 0){
-                    alert("El producto " + producto1.nombre + " ha sido agregado al carrito exitosamente, no quedan unidades disponibles")
-                    
-                }else{
-                    alert("Producto " + producto1.nombre + " ha sido agregado al carrito exitosamente, quedan solo " + producto1.cantidad + " unidades")
-                    
-                }
+                producto1.cantidad == 0 ? alert("El producto " + producto1.nombre + " ha sido agregado al carrito exitosamente, no quedan unidades disponibles") : alert("Producto " + producto1.nombre + " ha sido agregado al carrito exitosamente, quedan solo " + producto1.cantidad + " unidades")
+
             }else if(cantidadSeleccionada > producto1.cantidad){
                 alert("La cantidad ingresada es mayor al stock disponible actualmente")
             }else if(validarSoloNumeros(cantidadSeleccionada) == false){
                 alert("Debe ingresar solo numeros")
             }
-        
     }else if(articuloSeleccionado == 2){
         if (cantidadSeleccionada <= producto2.cantidad){
             carrito.push(producto2)
             producto2.cantidadSeleccionada = cantidadSeleccionada
             producto2.comprar(cantidadSeleccionada)
-            if(producto2.cantidad == 0){
-                alert("El producto " + producto2.nombre + " ha sido agregado al carrito exitosamente, no quedan unidades disponibles")
-                
-            }else{
-                alert("Producto " + producto2.nombre + " ha sido agregado al carrito exitosamente, quedan solo " + producto2.cantidad + " unidades")
-                
-            }
+            
+            producto2.cantidad == 0 ? alert("El producto " + producto1.nombre + " ha sido agregado al carrito exitosamente, no quedan unidades disponibles") : alert("Producto " + producto2.nombre + " ha sido agregado al carrito exitosamente, quedan solo " + producto2.cantidad + " unidades")
+         
         }else if(cantidadSeleccionada > producto2.cantidad){
             alert("La cantidad ingresada es mayor al stock disponible actualmente")
         }else if(validarSoloNumeros(cantidadSeleccionada)== false){
@@ -104,13 +93,8 @@ while (articuloSeleccionado != 0) {
             carrito.push(producto3)
             producto3.cantidadSeleccionada = cantidadSeleccionada
             producto3.comprar(cantidadSeleccionada)
-            if(producto3.cantidad == 0){
-                alert("El producto " + producto3.nombre + " ha sido agregado al carrito exitosamente, no quedan unidades disponibles")
-                
-            }else{
-                alert("Producto " + producto3.nombre + " ha sido agregado al carrito exitosamente, quedan solo " + producto3.cantidad + " unidades")
-                
-            }
+            producto3.cantidad == 0 ? alert("El producto " + producto1.nombre + " ha sido agregado al carrito exitosamente, no quedan unidades disponibles") : alert("Producto " + producto3.nombre + " ha sido agregado al carrito exitosamente, quedan solo " + producto3.cantidad + " unidades")
+          
         }else if(cantidadSeleccionada > producto3.cantidad){
             alert("La cantidad ingresada es mayor al stock disponible actualmente")
         }else if(validarSoloNumeros(cantidadSeleccionada) == false){
@@ -121,13 +105,8 @@ while (articuloSeleccionado != 0) {
             carrito.push(producto4)
             producto4.cantidadSeleccionada = cantidadSeleccionada
             producto4.comprar(cantidadSeleccionada)
-            if(producto4.cantidad == 0){
-                alert("El producto " + producto4.nombre + " ha sido agregado al carrito exitosamente, no quedan unidades disponibles")
-                
-            }else{
-                alert("Producto " + producto4.nombre + " ha sido agregado al carrito exitosamente, quedan solo " + producto4.cantidad + " unidades")
-                
-            }
+            producto4.cantidad == 0 ? alert("El producto " + producto1.nombre + " ha sido agregado al carrito exitosamente, no quedan unidades disponibles") : alert("Producto " + producto4.nombre + " ha sido agregado al carrito exitosamente, quedan solo " + producto4.cantidad + " unidades")
+         
         }else if(cantidadSeleccionada > producto4.cantidad){
             alert("La cantidad ingresada es mayor al stock disponible actualmente")
         }else if(validarSoloNumeros(cantidadSeleccionada)== false){
@@ -138,14 +117,8 @@ while (articuloSeleccionado != 0) {
             carrito.push(producto5)
             producto5.cantidadSeleccionada = cantidadSeleccionada
             producto5.comprar(cantidadSeleccionada)
-            if(producto5.cantidad == 0){
-                alert("El producto " + producto5.nombre + " ha sido agregado al carrito exitosamente, no quedan unidades disponibles")
-                
-            }else if(cantidadSeleccionada > producto5.cantidad){
-                alert("Producto " + producto5.nombre + " ha sido agregado al carrito exitosamente, quedan solo " + producto5.cantidad + " unidades")
-            }else if(validarSoloNumeros(cantidadSeleccionada)== false){
-                alert("Debe ingresar solo numeros")
-            }
+            producto5.cantidad == 0 ? alert("El producto " + producto1.nombre + " ha sido agregado al carrito exitosamente, no quedan unidades disponibles") : alert("Producto " + producto5.nombre + " ha sido agregado al carrito exitosamente, quedan solo " + producto5.cantidad + " unidades")
+         
                 
         }else if(cantidadSeleccionada > producto5.cantidad){
             alert("La cantidad ingresada es mayor al stock disponible actualmente")
@@ -157,12 +130,8 @@ while (articuloSeleccionado != 0) {
             carrito.push(producto6)
             producto6.cantidadSeleccionada = cantidadSeleccionada
             producto6.comprar(cantidadSeleccionada)
-            if(producto6.cantidad == 0){
-                alert("El producto " + producto6.nombre + " ha sido agregado al carrito exitosamente, no quedan unidades disponibles")
-                
-            }else{
-                alert("Producto " + producto6.nombre + " ha sido agregado al carrito exitosamente, quedan solo " + producto6.cantidad + " unidades")
-            }
+            producto6.cantidad == 0 ? alert("El producto " + producto1.nombre + " ha sido agregado al carrito exitosamente, no quedan unidades disponibles") : alert("Producto " + producto6.nombre + " ha sido agregado al carrito exitosamente, quedan solo " + producto6.cantidad + " unidades")
+            
                 
         }else if(cantidadSeleccionada > producto6.cantidad){
             alert("La cantidad ingresada es mayor al stock disponible actualmente")
@@ -216,4 +185,22 @@ boton.innerHTML = "<button>Pagar</button>"
 let container = document.getElementById("contenedor-boton")
 document.body.appendChild(boton)
 
-boton.addEventListener("click", () => {alert("Su compra se ha realizado de manera exitosa")})
+boton.addEventListener("click", () => {
+    Swal.fire({
+        title: 'Desea realizar el pago?',
+        text: "",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Pagar',
+        cancelButtonText: "Cancelar"
+    }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'El pago se ha realizado exitosamente!',
+          )
+        }
+    })
+})
+
