@@ -1,10 +1,11 @@
 class productos{
-    constructor(opcion, tipoArticulo, nombre, cantidad, precio ){
+    constructor(opcion, tipoArticulo, nombre, cantidad, precio, imagen ){
         this.opcion = opcion
         this.tipoArticulo = tipoArticulo
         this.nombre = nombre
         this.cantidad = cantidad
         this.precio = precio
+        this.imagen = imagen
         this.comprar = function(cantidadSeleccionada) {
                 if(articuloSeleccionado == 1){
                     return producto1.cantidad = producto1.cantidad - cantidadSeleccionada
@@ -28,12 +29,12 @@ function validarSoloNumeros(n){
     return regex.test(n)
 }
 
-const producto1 = new productos(1, "Consola de video juegos", "Playstation 5", 10, 500)
-const producto2 = new productos(2, "Consola de video juegos", "Xbox series x", 10, 500)
-const producto3 = new productos(3, "Televisor", "Lg Oled C2", 10, 600)
-const producto4 = new productos(4, "Televisor", "Sony A8G Oled", 10, 600)
-const producto5 = new productos(5, "Notebook", "Lenovo Legion 7", 10, 450)
-const producto6 = new productos(6, "Notebook", "Asus Rog Strix G15", 10, 450)
+const producto1 = new productos(1, "Consola de video juegos", "Playstation 5", 10, 500, "../img/ps5.jpeg")
+const producto2 = new productos(2, "Consola de video juegos", "Xbox series x", 10, 500, "../img/sx.jpeg")
+const producto3 = new productos(3, "Televisor", "Lg Oled C2", 10, 600, "../img/lgOled.jpeg")
+const producto4 = new productos(4, "Televisor", "Sony A8G Oled", 10, 600, "../img/tvsony.jpeg")
+const producto5 = new productos(5, "Notebook", "Lenovo Legion 7", 10, 450, "../img/legion.jpeg")
+const producto6 = new productos(6, "Notebook", "Asus Rog Strix G15", 10, 450, "../img/asus.jpeg")
 
 const carrito = []
 let totalCarrito = 0
@@ -169,21 +170,29 @@ if (carrito != []){
 }
 
 for(const producto of carrito){
-    let contenedor = document.createElement("contenedor")
-    contenedor.innerHTML = `<h3> Producto ${producto.nombre} </h3>
-                            <p> Precio  $${producto.precio * producto.cantidadSeleccionada}`
-    document.body.appendChild(contenedor)
+    let contenedor = document.getElementById("contenedor")
+    let main = document.createElement("div")
+    main.innerHTML = `<div class="card" style="width: 18rem; height:27rem;">
+    <img src="${producto.imagen}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title" style="text-align: center">${producto.nombre}</h5>
+      <p class="card-text" style="text-align: center">$${producto.precio * producto.cantidadSeleccionada}</p>
+    </div>
+    </div>`
+    contenedor.append(main)
 }
 
-const resultado = carrito.reduce((total, producto) => total + producto.precio * producto.cantidadSeleccionada, 0)
-let total = document.createElement("total")
-total.innerHTML = "<h4> TOTAL  $" + resultado + "</h4>"
-document.body.appendChild(total)
 
-let boton = document.createElement("boton")
-boton.innerHTML = "<button>Pagar</button>"
+let boton = document.createElement("button")
+boton.innerText = "Pagar"
+boton.className = "btn btn-primary mb-2"
 let container = document.getElementById("contenedor-boton")
-document.body.appendChild(boton)
+container.append(boton)
+
+const resultado = carrito.reduce((total, producto) => total + producto.precio * producto.cantidadSeleccionada, 0)
+let total = document.getElementById("total")
+total.innerHTML = "<h4> TOTAL  $" + resultado + "</h4>"
+container.append(total)
 
 boton.addEventListener("click", () => {
     Swal.fire({
@@ -196,11 +205,13 @@ boton.addEventListener("click", () => {
         confirmButtonText: 'Pagar',
         cancelButtonText: "Cancelar"
     }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire(
-            'El pago se ha realizado exitosamente!',
-          )
-        }
+        setTimeout(() =>{
+            if (result.isConfirmed) {
+                Swal.fire(
+                  'El pago se ha realizado exitosamente!',
+                )
+              }
+        }, 2000)
     })
 })
 

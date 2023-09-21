@@ -1,0 +1,24 @@
+body{
+    background-color: black;
+}
+h1 {
+    text-align: center;
+    color: white;
+}
+main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+}
+
+#contenedor-boton{
+   display: flex;
+   flex-direction: column-reverse;
+   justify-content: center;
+   align-items: center;
+}
+
+#total{
+    color: white
+}
