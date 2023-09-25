@@ -29,7 +29,7 @@
        "Nombre":"Sony A8G Oled",
        "Cantidad":10,
        "Precio":600,
-       "Imagen":"../img/tvsony.jpeg"
+       "Imagen":"./img/tvsony.jpeg"
     },
     {
        "opcion":5,
