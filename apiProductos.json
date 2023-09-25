@@ -5,7 +5,7 @@
        "Nombre":"Playstation 5",
        "Cantidad":10,
        "Precio":500,
-       "Imagen":"../img/ps5.jpeg"
+       "Imagen":"./img/ps5.jpeg"
     },
     {
        "opcion":2,
@@ -13,7 +13,7 @@
        "Nombre":"Xbox series x",
        "Cantidad":10,
        "Precio":500,
-       "Imagen":"../img/sx.jpeg"
+       "Imagen":"./img/sx.jpeg"
     },
     {
        "opcion":3,
@@ -21,7 +21,7 @@
        "Nombre":"Lg Oled C2",
        "Cantidad":10,
        "Precio":600,
-       "Imagen":"../img/lgOled.jpeg"
+       "Imagen":"./img/lgOled.jpeg"
     },
     {
        "opcion":4,
@@ -37,7 +37,7 @@
        "Nombre":"Lenovo Legion 7",
        "Cantidad":10,
        "Precio":450,
-       "Imagen":"../img/legion.jpeg"
+       "Imagen":"./img/legion.jpeg"
     },
     {
        "opcion":6,
@@ -45,6 +45,6 @@
        "Nombre":"Asus Rog Strix G15",
        "Cantidad":10,
        "Precio":450,
-       "Imagen":"../img/asus.jpeg"
+       "Imagen":"./img/asus.jpeg"
     }
  ]
