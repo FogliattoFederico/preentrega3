@@ -5,11 +5,13 @@ h1 {
     text-align: center;
     color: white;
 }
-main {
+main, #productos {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
     gap: 2rem;
     padding: 2rem;
+    border-bottom: 2px solid gray;
 }
 
 #contenedor-boton{

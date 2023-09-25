@@ -21,6 +21,7 @@ class productos{
                     return producto6.cantidad = producto6.cantidad - cantidadSeleccionada
                 }
         }
+      
     }
 }
 
@@ -29,12 +30,30 @@ function validarSoloNumeros(n){
     return regex.test(n)
 }
 
+async function CargarProductos() {
+    let listaProductosJson = await fetch("apiProductos.json")
+    let listaProductosJs = await listaProductosJson.json()
+
+    const productos = document.getElementById("productos")
+    listaProductosJs.forEach(producto => {
+        productos.innerHTML += `<div class="card" style="width: 18rem; height:27rem;">
+        <img src="${producto.Imagen}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" style="text-align: center">${producto.Nombre}</h5>
+          <p class="card-text" style="text-align: center">$${producto.Precio}</p>
+        </div>
+        </div>`
+    });
+}
+CargarProductos()
+
 const producto1 = new productos(1, "Consola de video juegos", "Playstation 5", 10, 500, "../img/ps5.jpeg")
 const producto2 = new productos(2, "Consola de video juegos", "Xbox series x", 10, 500, "../img/sx.jpeg")
 const producto3 = new productos(3, "Televisor", "Lg Oled C2", 10, 600, "../img/lgOled.jpeg")
 const producto4 = new productos(4, "Televisor", "Sony A8G Oled", 10, 600, "../img/tvsony.jpeg")
 const producto5 = new productos(5, "Notebook", "Lenovo Legion 7", 10, 450, "../img/legion.jpeg")
 const producto6 = new productos(6, "Notebook", "Asus Rog Strix G15", 10, 450, "../img/asus.jpeg")
+
 
 const carrito = []
 let totalCarrito = 0
@@ -65,7 +84,7 @@ if (articuloSeleccionado != 0){
 while (articuloSeleccionado != 0) {
 
     if(articuloSeleccionado == 1){
-            if (cantidadSeleccionada <= producto1.cantidad){
+            if (cantidadSeleccionada <= producto1.cantidad && cantidadSeleccionada > 0){
                 carrito.push(producto1)
                 producto1.cantidadSeleccionada = cantidadSeleccionada
                 producto1.comprar(cantidadSeleccionada)
@@ -75,9 +94,11 @@ while (articuloSeleccionado != 0) {
                 alert("La cantidad ingresada es mayor al stock disponible actualmente")
             }else if(validarSoloNumeros(cantidadSeleccionada) == false){
                 alert("Debe ingresar solo numeros")
+            }else if(cantidadSeleccionada < 1){
+                alert("Numero invalido")
             }
     }else if(articuloSeleccionado == 2){
-        if (cantidadSeleccionada <= producto2.cantidad){
+        if (cantidadSeleccionada <= producto2.cantidad && cantidadSeleccionada > 0){
             carrito.push(producto2)
             producto2.cantidadSeleccionada = cantidadSeleccionada
             producto2.comprar(cantidadSeleccionada)
@@ -88,9 +109,11 @@ while (articuloSeleccionado != 0) {
             alert("La cantidad ingresada es mayor al stock disponible actualmente")
         }else if(validarSoloNumeros(cantidadSeleccionada)== false){
             alert("Debe ingresar solo numeros")
+        }else if(cantidadSeleccionada < 1){
+            alert("Numero invalido")
         }
     }else if(articuloSeleccionado == 3){
-        if (cantidadSeleccionada <= producto3.cantidad){
+        if (cantidadSeleccionada <= producto3.cantidad && cantidadSeleccionada > 0){
             carrito.push(producto3)
             producto3.cantidadSeleccionada = cantidadSeleccionada
             producto3.comprar(cantidadSeleccionada)
@@ -100,9 +123,11 @@ while (articuloSeleccionado != 0) {
             alert("La cantidad ingresada es mayor al stock disponible actualmente")
         }else if(validarSoloNumeros(cantidadSeleccionada) == false){
             alert("Debe ingresar solo numeros")
+        }else if(cantidadSeleccionada < 1){
+            alert("Numero invalido")
         }
     }else if(articuloSeleccionado == 4){
-        if (cantidadSeleccionada <= producto4.cantidad){
+        if (cantidadSeleccionada <= producto4.cantidad && cantidadSeleccionada > 0){
             carrito.push(producto4)
             producto4.cantidadSeleccionada = cantidadSeleccionada
             producto4.comprar(cantidadSeleccionada)
@@ -112,9 +137,11 @@ while (articuloSeleccionado != 0) {
             alert("La cantidad ingresada es mayor al stock disponible actualmente")
         }else if(validarSoloNumeros(cantidadSeleccionada)== false){
             alert("Debe ingresar solo numeros")
+        }else if(cantidadSeleccionada < 1){
+            alert("Numero invalido")
         }
     }else if(articuloSeleccionado == 5){
-        if (cantidadSeleccionada <= producto5.cantidad){
+        if (cantidadSeleccionada <= producto5.cantidad && cantidadSeleccionada > 0){
             carrito.push(producto5)
             producto5.cantidadSeleccionada = cantidadSeleccionada
             producto5.comprar(cantidadSeleccionada)
@@ -125,9 +152,11 @@ while (articuloSeleccionado != 0) {
             alert("La cantidad ingresada es mayor al stock disponible actualmente")
         }else if(validarSoloNumeros(cantidadSeleccionada)== false){
             alert("Debe ingresar solo numeros")
+        }else if(cantidadSeleccionada < 1){
+            alert("Numero invalido")
         }
     }else if(articuloSeleccionado == 6){
-        if (cantidadSeleccionada <= producto6.cantidad){
+        if (cantidadSeleccionada <= producto6.cantidad && cantidadSeleccionada > 0){
             carrito.push(producto6)
             producto6.cantidadSeleccionada = cantidadSeleccionada
             producto6.comprar(cantidadSeleccionada)
@@ -138,6 +167,8 @@ while (articuloSeleccionado != 0) {
             alert("La cantidad ingresada es mayor al stock disponible actualmente")
         }else if(validarSoloNumeros(cantidadSeleccionada)== false){
             alert("Debe ingresar solo numeros")
+        }else if(cantidadSeleccionada < 1){
+            alert("Numero invalido")
         }
     }
     
@@ -163,6 +194,7 @@ while (articuloSeleccionado != 0) {
 }
 
 localStorage.setItem("carrito", JSON.stringify(carrito))
+
 
 if (carrito != []){
     let titulo = document.getElementById("titulo")
