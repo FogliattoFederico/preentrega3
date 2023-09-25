@@ -47,12 +47,12 @@ async function CargarProductos() {
 }
 CargarProductos()
 
-const producto1 = new productos(1, "Consola de video juegos", "Playstation 5", 10, 500, "../img/ps5.jpeg")
-const producto2 = new productos(2, "Consola de video juegos", "Xbox series x", 10, 500, "../img/sx.jpeg")
-const producto3 = new productos(3, "Televisor", "Lg Oled C2", 10, 600, "../img/lgOled.jpeg")
-const producto4 = new productos(4, "Televisor", "Sony A8G Oled", 10, 600, "../img/tvsony.jpeg")
-const producto5 = new productos(5, "Notebook", "Lenovo Legion 7", 10, 450, "../img/legion.jpeg")
-const producto6 = new productos(6, "Notebook", "Asus Rog Strix G15", 10, 450, "../img/asus.jpeg")
+const producto1 = new productos(1, "Consola de video juegos", "Playstation 5", 10, 500, "./img/ps5.jpeg")
+const producto2 = new productos(2, "Consola de video juegos", "Xbox series x", 10, 500, "./img/sx.jpeg")
+const producto3 = new productos(3, "Televisor", "Lg Oled C2", 10, 600, "./img/lgOled.jpeg")
+const producto4 = new productos(4, "Televisor", "Sony A8G Oled", 10, 600, "./img/tvsony.jpeg")
+const producto5 = new productos(5, "Notebook", "Lenovo Legion 7", 10, 450, "./img/legion.jpeg")
+const producto6 = new productos(6, "Notebook", "Asus Rog Strix G15", 10, 450, "./img/asus.jpeg")
 
 
 const carrito = []
