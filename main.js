@@ -18,7 +18,8 @@ class Producto {
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">${this.nombre}</h5>
-                    <p class="card-text">Cantidad ${this.cantidad}</p>
+                    <p class="card-text">Cantidad 
+                    ${this.cantidad}</p>
                     <p class="card-text">Precio $${this.precio}</p> 
                 </div>
                 <button id="ep-${this.id}"class="btn_tacho"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash-filled" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -63,19 +64,6 @@ class ProductoController {
         console.log(listaProductosJs)
         this.mostrarEnDom()
 
-        // const p1 = new Producto(1, "Playstation5", 500, "Consola de ultima generacion de Sony", "img/ps5.jpeg", 1)
-        // const p2 = new Producto(2, "Xbox Series X", 500, "Consola de ultima generacion de Microsoft", "img/sx.jpeg", 1)
-        // const p3 = new Producto(3, "Asus Rog", 400, "Notebook gamer marca Asus", "img/asus.jpeg", 1)
-        // const p4 = new Producto(4, "Lenovo Legion 7", 300, "Notebook Gamer marca Lenovo", "img/legion.jpeg", 1)
-        // const p5 = new Producto(5, "Tv Lg Oled", 700, "Tv 4k Oled de alta definicion marca LG", "img/lgOled.jpeg", 1)
-        // const p6 = new Producto(6, "Sony A8G Oled", 600, "Tv 4k de alta definicion marca Sony", "img/tvsony.jpeg", 1)
-
-        // CP.agregar(p1)
-        // CP.agregar(p2)
-        // CP.agregar(p3)
-        // CP.agregar(p4)
-        // CP.agregar(p5)
-        // CP.agregar(p6)
     }
     agregar(producto) {
         if (producto instanceof Producto) {
