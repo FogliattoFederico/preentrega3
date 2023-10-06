@@ -53,12 +53,12 @@ class ProductoController {
         this.listaProductos = []
     }
     cargarProducto() {
-        const p1 = new Producto(1, "Playstation5", 500, "Consola de ultima generacion se Sony", "./img/ps5.jpeg")
-        const p2 = new Producto(2, "Xbox Series X", 500, "Consola de ultima generacion de Microsoft", "./img/sx.jpeg")
-        const p3 = new Producto(3, "Asus Rog", 400, "Notebook gamer marca Asus", "./img/asus.jpeg")
-        const p4 = new Producto(4, "Lenovo Legion 7", 300, "Notebook Gamer marca Lenovo", "./img/legion.jpeg")
-        const p5 = new Producto(5, "Tv Lg Oled", 700, "Tv 4k Oled de alta definicion marca LG", "./img/lgOled.jpeg")
-        const p6 = new Producto(6, "Sony A8G Oled", 600, "Tv 4k de alta definicion marca Sony", "./img/tvsony.jpeg")
+        const p1 = new Producto(1, "Playstation5", 500, "Consola de ultima generacion se Sony", "img/ps5.jpeg")
+        const p2 = new Producto(2, "Xbox Series X", 500, "Consola de ultima generacion de Microsoft", "img/sx.jpeg")
+        const p3 = new Producto(3, "Asus Rog", 400, "Notebook gamer marca Asus", "img/asus.jpeg")
+        const p4 = new Producto(4, "Lenovo Legion 7", 300, "Notebook Gamer marca Lenovo", "img/legion.jpeg")
+        const p5 = new Producto(5, "Tv Lg Oled", 700, "Tv 4k Oled de alta definicion marca LG", "img/lgOled.jpeg")
+        const p6 = new Producto(6, "Sony A8G Oled", 600, "Tv 4k de alta definicion marca Sony", "img/tvsony.jpeg")
 
         CP.agregar(p1)
         CP.agregar(p2)
