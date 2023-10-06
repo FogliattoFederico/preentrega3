@@ -152,6 +152,9 @@ class Carrito {
         const eliminarCarrito = document.getElementById("btn_vaciar")
         eliminarCarrito.addEventListener("click", () => {
             this.mensajeBorrar()
+            this.vaciarCarrito()
+            this.guardarEnStorage()
+            this.mostrarEnDom()
         })
     }
     eventoEliminarProducto() {
@@ -198,11 +201,8 @@ class Carrito {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                this.vaciarCarrito()
-                this.mostrarEnDom()
-                Swal.fire(
-                    'Borrado!',
-                )
+                Swal.fire('Borrado!')
+               
             }
         })
     }
