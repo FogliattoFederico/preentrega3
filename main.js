@@ -1,11 +1,11 @@
 class Producto {
     constructor(id, nombre, precio, descripcion, imagen, cantidad) {
-        this.id = id,
-            this.nombre = nombre
+        this.id = id
+        this.nombre = nombre
         this.precio = precio
         this.descripcion = descripcion
         this.imagen = imagen
-        this.cantidad = 1
+        this.cantidad = cantidad
     }
 
     descripcionCarrito() {
@@ -52,20 +52,30 @@ class ProductoController {
     constructor() {
         this.listaProductos = []
     }
-    cargarProducto() {
-        const p1 = new Producto(1, "Playstation5", 500, "Consola de ultima generacion se Sony", "img/ps5.jpeg")
-        const p2 = new Producto(2, "Xbox Series X", 500, "Consola de ultima generacion de Microsoft", "img/sx.jpeg")
-        const p3 = new Producto(3, "Asus Rog", 400, "Notebook gamer marca Asus", "img/asus.jpeg")
-        const p4 = new Producto(4, "Lenovo Legion 7", 300, "Notebook Gamer marca Lenovo", "img/legion.jpeg")
-        const p5 = new Producto(5, "Tv Lg Oled", 700, "Tv 4k Oled de alta definicion marca LG", "img/lgOled.jpeg")
-        const p6 = new Producto(6, "Sony A8G Oled", 600, "Tv 4k de alta definicion marca Sony", "img/tvsony.jpeg")
+    async prepararContenedorProductos() {
+       let listaProductosJson = await fetch("apiProductos.json")
+       let listaProductosJs = await listaProductosJson.json()
 
-        CP.agregar(p1)
-        CP.agregar(p2)
-        CP.agregar(p3)
-        CP.agregar(p4)
-        CP.agregar(p5)
-        CP.agregar(p6)
+        listaProductosJs.forEach(producto =>{
+            let nuevoProducto = new Producto(producto.id, producto.nombre, producto.precio, producto.descripcion, producto.imagen, producto.cantidad)
+            this.agregar(nuevoProducto)
+        })
+        console.log(listaProductosJs)
+        this.mostrarEnDom()
+
+        // const p1 = new Producto(1, "Playstation5", 500, "Consola de ultima generacion de Sony", "img/ps5.jpeg", 1)
+        // const p2 = new Producto(2, "Xbox Series X", 500, "Consola de ultima generacion de Microsoft", "img/sx.jpeg", 1)
+        // const p3 = new Producto(3, "Asus Rog", 400, "Notebook gamer marca Asus", "img/asus.jpeg", 1)
+        // const p4 = new Producto(4, "Lenovo Legion 7", 300, "Notebook Gamer marca Lenovo", "img/legion.jpeg", 1)
+        // const p5 = new Producto(5, "Tv Lg Oled", 700, "Tv 4k Oled de alta definicion marca LG", "img/lgOled.jpeg", 1)
+        // const p6 = new Producto(6, "Sony A8G Oled", 600, "Tv 4k de alta definicion marca Sony", "img/tvsony.jpeg", 1)
+
+        // CP.agregar(p1)
+        // CP.agregar(p2)
+        // CP.agregar(p3)
+        // CP.agregar(p4)
+        // CP.agregar(p5)
+        // CP.agregar(p6)
     }
     agregar(producto) {
         if (producto instanceof Producto) {
@@ -115,18 +125,18 @@ class Carrito {
 
     }
     recuperarStorage() {
-        if(this.listaCarrito !== 0){
+        if (this.listaCarrito !== 0) {
 
             let listaCarritoJson = localStorage.getItem("lista carrito")
             let listaCarritoJs = JSON.parse(listaCarritoJson)
             let listaAuxiliar = []
             listaCarritoJs.forEach(producto => {
-                let productoNuevo = new Producto(producto.id, producto.nombre, producto.precio, producto.descripcion, producto.imagen)
+                let productoNuevo = new Producto(producto.id, producto.nombre, producto.precio, producto.descripcion, producto.imagen, producto.cantidad)
                 listaAuxiliar.push(productoNuevo)
             })
             this.listaCarrito = listaAuxiliar
         }
-}
+    }
     eliminar(productoAeliminar) {
         let indice = this.listaCarrito.findIndex(producto => producto.id == productoAeliminar.id)
 
@@ -143,6 +153,7 @@ class Carrito {
         this.listaCarrito.forEach(producto => {
             contenedor_carrito.innerHTML += producto.descripcionCarrito()
         })
+        
         this.eventoVaciarCarrito()
         this.eventoEliminarProducto()
         this.eventoPagar()
@@ -202,7 +213,7 @@ class Carrito {
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire('Borrado!')
-               
+
             }
         })
     }
@@ -235,5 +246,6 @@ const carrito = new Carrito()
 carrito.recuperarStorage()
 carrito.mostrarEnDom()
 
+CP.prepararContenedorProductos()
 CP.cargarProducto()
 CP.mostrarEnDom()

@@ -1,50 +1,50 @@
 [
-    {
-       "opcion":1,
-       "TipoArticulo":"Consola de video juegos",
-       "Nombre":"Playstation 5",
-       "Cantidad":10,
-       "Precio":500,
-       "Imagen":"./img/ps5.jpeg"
-    },
-    {
-       "opcion":2,
-       "TipoArticulo":"Consola de video juegos",
-       "Nombre":"Xbox series x",
-       "Cantidad":10,
-       "Precio":500,
-       "Imagen":"./img/sx.jpeg"
-    },
-    {
-       "opcion":3,
-       "TipoArticulo":"Televisor",
-       "Nombre":"Lg Oled C2",
-       "Cantidad":10,
-       "Precio":600,
-       "Imagen":"./img/lgOled.jpeg"
-    },
-    {
-       "opcion":4,
-       "TipoArticulo":"Televisor",
-       "Nombre":"Sony A8G Oled",
-       "Cantidad":10,
-       "Precio":600,
-       "Imagen":"./img/tvsony.jpeg"
-    },
-    {
-       "opcion":5,
-       "TipoArticulo":"Notebook",
-       "Nombre":"Lenovo Legion 7",
-       "Cantidad":10,
-       "Precio":450,
-       "Imagen":"./img/legion.jpeg"
-    },
-    {
-       "opcion":6,
-       "TipoArticulo":"Notebook",
-       "Nombre":"Asus Rog Strix G15",
-       "Cantidad":10,
-       "Precio":450,
-       "Imagen":"./img/asus.jpeg"
-    }
- ]
+   {
+      "id":1,
+      "nombre":"Playstation 5",
+      "precio":500,
+      "descripcion":"Consola de ultima generacion marca Sony",
+      "imagen":"./img/ps5.jpeg",
+      "cantidad":1
+   },
+   {
+      "id":2,
+      "nombre":"Xbox series x",
+      "precio":500,
+      "descripcion":"Consola de ultima generacion marca Microsoft",
+      "imagen":"./img/sx.jpeg",
+      "cantidad":1
+   },
+   {
+      "id":3,
+      "nombre":"Asus Rog Strix G15",
+      "precio":450,
+      "descripcion":"Notebook gamer marca Asus",
+      "imagen":"./img/asus.jpeg",
+      "cantidad":1
+   },
+   {
+      "id":4,
+      "nombre":"Lenovo Legion 7",
+      "precio":450,
+      "descripcion":"Notebook gamer marca Lenovo",
+      "imagen":"./img/legion.jpeg",
+      "cantidad":1
+   },
+   {
+      "id":5,
+      "nombre":"Lg Oled C2",
+      "precio":600,
+      "descripcion":"Tv 4k Oled de alta definicion marca LG",
+      "imagen":"./img/lgOled.jpeg",
+      "cantidad":1
+   },
+   {
+      "id":6,
+      "nombre":"Sony A8G Oled",
+      "precio":600,
+      "descripcion":"Tv 4k Oled de alta definicion marca Sony",
+      "imagen":"./img/tvsony.jpeg",
+      "cantidad":1
+   }
+]
