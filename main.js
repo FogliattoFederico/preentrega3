@@ -112,18 +112,21 @@ class Carrito {
     guardarEnStorage() {
         let listaCarritoJson = JSON.stringify(this.listaCarrito)
         localStorage.setItem("lista carrito", listaCarritoJson)
-    }
-    recuperarStorage() {
-        let listaCarritoJson = localStorage.getItem("lista carrito")
-        let listaCarritoJs = JSON.parse(listaCarritoJson)
-        let listaAuxiliar = []
-        listaCarritoJs.forEach(producto => {
-            let productoNuevo = new Producto(producto.id, producto.nombre, producto.precio, producto.descripcion, producto.imagen)
-            listaAuxiliar.push(productoNuevo)
-        })
-        this.listaCarrito = listaAuxiliar
 
     }
+    recuperarStorage() {
+        if(this.listaCarrito !== 0){
+
+            let listaCarritoJson = localStorage.getItem("lista carrito")
+            let listaCarritoJs = JSON.parse(listaCarritoJson)
+            let listaAuxiliar = []
+            listaCarritoJs.forEach(producto => {
+                let productoNuevo = new Producto(producto.id, producto.nombre, producto.precio, producto.descripcion, producto.imagen)
+                listaAuxiliar.push(productoNuevo)
+            })
+            this.listaCarrito = listaAuxiliar
+        }
+}
     eliminar(productoAeliminar) {
         let indice = this.listaCarrito.findIndex(producto => producto.id == productoAeliminar.id)
 
@@ -229,7 +232,7 @@ class Carrito {
 const CP = new ProductoController()
 const carrito = new Carrito()
 
-// carrito.recuperarStorage()
+carrito.recuperarStorage()
 carrito.mostrarEnDom()
 
 CP.cargarProducto()
