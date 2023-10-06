@@ -1,249 +1,235 @@
-class productos{
-    constructor(opcion, tipoArticulo, nombre, cantidad, precio, imagen ){
-        this.opcion = opcion
-        this.tipoArticulo = tipoArticulo
+class Producto {
+    constructor(id, nombre, precio, descripcion, imagen, cantidad) {
+        this.id = id,
         this.nombre = nombre
-        this.cantidad = cantidad
         this.precio = precio
+        this.descripcion = descripcion
         this.imagen = imagen
-        this.comprar = function(cantidadSeleccionada) {
-                if(articuloSeleccionado == 1){
-                    return producto1.cantidad = producto1.cantidad - cantidadSeleccionada
-                }else if(articuloSeleccionado == 2){
-                    return producto2.cantidad = producto2.cantidad - cantidadSeleccionada
-                }else if(articuloSeleccionado == 3){
-                    return producto3.cantidad = producto3.cantidad - cantidadSeleccionada
-                }else if(articuloSeleccionado == 4){
-                    return producto4.cantidad = producto4.cantidad - cantidadSeleccionada
-                }else if(articuloSeleccionado == 5){
-                    return producto5.cantidad = producto5.cantidad - cantidadSeleccionada
-                }else if(articuloSeleccionado == 6){
-                    return producto6.cantidad = producto6.cantidad - cantidadSeleccionada
-                }
-        }
-      
+        this.cantidad = 1
     }
-}
 
-function validarSoloNumeros(n){
-    const regex =  /^[0-9]+$/;
-    return regex.test(n)
-}
-
-async function CargarProductos() {
-    let listaProductosJson = await fetch("apiProductos.json")
-    let listaProductosJs = await listaProductosJson.json()
-
-    const productos = document.getElementById("productos")
-    listaProductosJs.forEach(producto => {
-        productos.innerHTML += `<div class="card" style="width: 18rem; height:27rem;">
-        <img src="${producto.Imagen}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title" style="text-align: center">${producto.Nombre}</h5>
-          <p class="card-text" style="text-align: center">$${producto.Precio}</p>
+    descripcionCarrito() {
+        return `
+        <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="${this.imagen}" class="img-fluid rounded-start" alt="${this.descripcion}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">${this.nombre}</h5>
+                    <p class="card-text">Cantidad ${this.cantidad}</p>
+                    <p class="card-text">Precio $${this.precio}</p> 
+                </div>
+                <button id="ep-${this.id}"class="btn_tacho"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash-filled" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" stroke-width="0" fill="currentColor" />
+                <path d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" stroke-width="0" fill="currentColor" />
+              </svg></button
+            </div>
         </div>
         </div>`
-    });
-}
-CargarProductos()
 
-const producto1 = new productos(1, "Consola de video juegos", "Playstation 5", 10, 500, "./img/ps5.jpeg")
-const producto2 = new productos(2, "Consola de video juegos", "Xbox series x", 10, 500, "./img/sx.jpeg")
-const producto3 = new productos(3, "Televisor", "Lg Oled C2", 10, 600, "./img/lgOled.jpeg")
-const producto4 = new productos(4, "Televisor", "Sony A8G Oled", 10, 600, "./img/tvsony.jpeg")
-const producto5 = new productos(5, "Notebook", "Lenovo Legion 7", 10, 450, "./img/legion.jpeg")
-const producto6 = new productos(6, "Notebook", "Asus Rog Strix G15", 10, 450, "./img/asus.jpeg")
-
-
-const carrito = []
-let totalCarrito = 0
-let articuloSeleccionado
-let cantidadSeleccionada
-
-
-articuloSeleccionado = Number(prompt("Seleccione el articulo que desea comprar \n 1.Playstation 5 \n 2.Xbox Series X \n 3.TV Lg Oled C2 \n 4.TV Sony A8G Oled \n 5.Notebook Lenovo Legion 7 \n 6.Notebook Asus Rog Strix G15 \n \n 0 para salir"))
-
-while(articuloSeleccionado < 0 || articuloSeleccionado > 6 || validarSoloNumeros(articuloSeleccionado) == false) {
-    if(validarSoloNumeros(articuloSeleccionado) == false){
-        alert("Debe ingresar solo numeros")
-    }else if(articuloSeleccionado < 0 || articuloSeleccionado > 6){
-        alert("Debe ingresar un numero valido")
     }
-    
-    articuloSeleccionado = Number(prompt("Seleccione el articulo que desea comprar \n 1.Playstation 5 \n 2.Xbox Series X \n 3.TV Lg Oled C2 \n 4.TV Sony A8G Oled \n 5.Notebook Lenovo Legion 7 \n 6.Notebook Asus Rog Strix G15 \n \n 0 para salir"))
-}
-
-if (articuloSeleccionado != 0){
-    cantidadSeleccionada = prompt("seleccione la cantidad que desea comprar")
-    while(cantidadSeleccionada == "" ){
-        alert("Debe ingresar un valor")
-        cantidadSeleccionada = prompt("seleccione la cantidad que desea comprar")
+    descripcionProducto() {
+        return `
+       <div class="card" style="width: 18rem;">
+            <img src="${this.imagen}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">${this.nombre}</h5>
+              <p class="card-text">${this.descripcion}.</p>
+              <p class="card-text">$ ${this.precio}.</p>
+              <button class="btn btn-primary" id="ap-${this.id}">Agregar al Carrito</button
+            </div>
+        </div>`
+    }
+    anadirCantidad() {
+        this.cantidad++
     }
 }
 
-while (articuloSeleccionado != 0) {
+class ProductoController {
+    constructor() {
+        this.listaProductos = []
+    }
+    cargarProducto() {
+        const p1 = new Producto(1, "Playstation5", 500, "Consola de ultima generacion se Sony", "./img/ps5.jpeg")
+        const p2 = new Producto(2, "Xbox Series X", 500, "Consola de ultima generacion de Microsoft", "./img/sx.jpeg")
+        const p3 = new Producto(3, "Asus Rog", 400, "Notebook gamer marca Asus", "./img/asus.jpeg")
+        const p4 = new Producto(4, "Lenovo Legion 7", 300, "Notebook Gamer marca Lenovo", "./img/legion.jpeg")
+        const p5 = new Producto(5, "Tv Lg Oled", 700, "Tv 4k Oled de alta definicion marca LG", "./img/lgOled.jpeg")
+        const p6 = new Producto(6, "Sony A8G Oled", 600, "Tv 4k de alta definicion marca Sony", "./img/tvsony.jpeg")
 
-    if(articuloSeleccionado == 1){
-            if (cantidadSeleccionada <= producto1.cantidad && cantidadSeleccionada > 0){
-                carrito.push(producto1)
-                producto1.cantidadSeleccionada = cantidadSeleccionada
-                producto1.comprar(cantidadSeleccionada)
-                producto1.cantidad == 0 ? alert("El producto " + producto1.nombre + " ha sido agregado al carrito exitosamente, no quedan unidades disponibles") : alert("Producto " + producto1.nombre + " ha sido agregado al carrito exitosamente, quedan solo " + producto1.cantidad + " unidades")
-
-            }else if(cantidadSeleccionada > producto1.cantidad){
-                alert("La cantidad ingresada es mayor al stock disponible actualmente")
-            }else if(validarSoloNumeros(cantidadSeleccionada) == false){
-                alert("Debe ingresar solo numeros")
-            }else if(cantidadSeleccionada < 1){
-                alert("Numero invalido")
-            }
-    }else if(articuloSeleccionado == 2){
-        if (cantidadSeleccionada <= producto2.cantidad && cantidadSeleccionada > 0){
-            carrito.push(producto2)
-            producto2.cantidadSeleccionada = cantidadSeleccionada
-            producto2.comprar(cantidadSeleccionada)
-            
-            producto2.cantidad == 0 ? alert("El producto " + producto1.nombre + " ha sido agregado al carrito exitosamente, no quedan unidades disponibles") : alert("Producto " + producto2.nombre + " ha sido agregado al carrito exitosamente, quedan solo " + producto2.cantidad + " unidades")
-         
-        }else if(cantidadSeleccionada > producto2.cantidad){
-            alert("La cantidad ingresada es mayor al stock disponible actualmente")
-        }else if(validarSoloNumeros(cantidadSeleccionada)== false){
-            alert("Debe ingresar solo numeros")
-        }else if(cantidadSeleccionada < 1){
-            alert("Numero invalido")
-        }
-    }else if(articuloSeleccionado == 3){
-        if (cantidadSeleccionada <= producto3.cantidad && cantidadSeleccionada > 0){
-            carrito.push(producto3)
-            producto3.cantidadSeleccionada = cantidadSeleccionada
-            producto3.comprar(cantidadSeleccionada)
-            producto3.cantidad == 0 ? alert("El producto " + producto1.nombre + " ha sido agregado al carrito exitosamente, no quedan unidades disponibles") : alert("Producto " + producto3.nombre + " ha sido agregado al carrito exitosamente, quedan solo " + producto3.cantidad + " unidades")
-          
-        }else if(cantidadSeleccionada > producto3.cantidad){
-            alert("La cantidad ingresada es mayor al stock disponible actualmente")
-        }else if(validarSoloNumeros(cantidadSeleccionada) == false){
-            alert("Debe ingresar solo numeros")
-        }else if(cantidadSeleccionada < 1){
-            alert("Numero invalido")
-        }
-    }else if(articuloSeleccionado == 4){
-        if (cantidadSeleccionada <= producto4.cantidad && cantidadSeleccionada > 0){
-            carrito.push(producto4)
-            producto4.cantidadSeleccionada = cantidadSeleccionada
-            producto4.comprar(cantidadSeleccionada)
-            producto4.cantidad == 0 ? alert("El producto " + producto1.nombre + " ha sido agregado al carrito exitosamente, no quedan unidades disponibles") : alert("Producto " + producto4.nombre + " ha sido agregado al carrito exitosamente, quedan solo " + producto4.cantidad + " unidades")
-         
-        }else if(cantidadSeleccionada > producto4.cantidad){
-            alert("La cantidad ingresada es mayor al stock disponible actualmente")
-        }else if(validarSoloNumeros(cantidadSeleccionada)== false){
-            alert("Debe ingresar solo numeros")
-        }else if(cantidadSeleccionada < 1){
-            alert("Numero invalido")
-        }
-    }else if(articuloSeleccionado == 5){
-        if (cantidadSeleccionada <= producto5.cantidad && cantidadSeleccionada > 0){
-            carrito.push(producto5)
-            producto5.cantidadSeleccionada = cantidadSeleccionada
-            producto5.comprar(cantidadSeleccionada)
-            producto5.cantidad == 0 ? alert("El producto " + producto1.nombre + " ha sido agregado al carrito exitosamente, no quedan unidades disponibles") : alert("Producto " + producto5.nombre + " ha sido agregado al carrito exitosamente, quedan solo " + producto5.cantidad + " unidades")
-         
-                
-        }else if(cantidadSeleccionada > producto5.cantidad){
-            alert("La cantidad ingresada es mayor al stock disponible actualmente")
-        }else if(validarSoloNumeros(cantidadSeleccionada)== false){
-            alert("Debe ingresar solo numeros")
-        }else if(cantidadSeleccionada < 1){
-            alert("Numero invalido")
-        }
-    }else if(articuloSeleccionado == 6){
-        if (cantidadSeleccionada <= producto6.cantidad && cantidadSeleccionada > 0){
-            carrito.push(producto6)
-            producto6.cantidadSeleccionada = cantidadSeleccionada
-            producto6.comprar(cantidadSeleccionada)
-            producto6.cantidad == 0 ? alert("El producto " + producto1.nombre + " ha sido agregado al carrito exitosamente, no quedan unidades disponibles") : alert("Producto " + producto6.nombre + " ha sido agregado al carrito exitosamente, quedan solo " + producto6.cantidad + " unidades")
-            
-                
-        }else if(cantidadSeleccionada > producto6.cantidad){
-            alert("La cantidad ingresada es mayor al stock disponible actualmente")
-        }else if(validarSoloNumeros(cantidadSeleccionada)== false){
-            alert("Debe ingresar solo numeros")
-        }else if(cantidadSeleccionada < 1){
-            alert("Numero invalido")
+        CP.agregar(p1)
+        CP.agregar(p2)
+        CP.agregar(p3)
+        CP.agregar(p4)
+        CP.agregar(p5)
+        CP.agregar(p6)
+    }
+    agregar(producto) {
+        if (producto instanceof Producto) {
+            this.listaProductos.push(producto)
         }
     }
-    
-    articuloSeleccionado = Number(prompt("Seleccione el articulo que desea comprar \n 1.Playstation 5 \n 2.Xbox Series X \n 3.TV Lg Oled C2 \n 4.TV Sony A8G Oled \n 5.Notebook Lenovo Legion 7 \n 6.Notebook Asus Rog Strix G15 \n \n 0 para salir"))
-    
-    while(articuloSeleccionado < 0 || articuloSeleccionado > 6 || validarSoloNumeros(articuloSeleccionado) == false){
-        if(validarSoloNumeros(articuloSeleccionado) == false){
-            alert("Debe ingresar solo numeros")
-        }else if(articuloSeleccionado < 0 || articuloSeleccionado > 6){
-            alert("Debe ingresar un numero valido")
-        }
-        
-        articuloSeleccionado = Number(prompt("Seleccione el articulo que desea comprar \n 1.Playstation 5 \n 2.Xbox Series X \n 3.TV Lg Oled C2 \n 4.TV Sony A8G Oled \n 5.Notebook Lenovo Legion 7 \n 6.Notebook Asus Rog Strix G15 \n \n 0 para salir"))
-    }
-    
-    if (articuloSeleccionado != 0){
-        cantidadSeleccionada = prompt("seleccione la cantidad que desea comprar")
-        while(cantidadSeleccionada === "" ){
-            alert("Debe ingresar un valor")
-            cantidadSeleccionada = prompt("seleccione la cantidad que desea comprar")
-        }
+    mostrarEnDom() {
+        const contenedor_productos = document.getElementById("contenedor_productos")
+        this.listaProductos.forEach(producto => {
+            contenedor_productos.innerHTML += producto.descripcionProducto()
+
+        })
+        this.listaProductos.forEach(producto => {
+            const btn_ap = document.getElementById(`ap-${producto.id}`)
+            btn_ap.addEventListener("click", () => {
+                carrito.agregar(producto)
+                carrito.guardarEnStorage()
+                carrito.mostrarEnDom()
+                Toastify({
+                    text: "Agregado exitosamente al carrito",
+                    duration: 1000
+                }).showToast();
+            })
+        })
     }
 }
 
-localStorage.setItem("carrito", JSON.stringify(carrito))
+class Carrito {
+    constructor() {
+        this.listaCarrito = []
+    }
+    agregar(producto) {
+        const productoExistente = this.listaCarrito.find(productoExistente => productoExistente.id == producto.id)
+
+        if (productoExistente) {
+            productoExistente.anadirCantidad()
+        } else if (producto instanceof Producto) {
+            this.listaCarrito.push(producto)
+        }
 
 
-if (carrito != []){
-    let titulo = document.getElementById("titulo")
-    titulo.textContent= "Tu carrito contiene los siguientes productos:"
-}
+    }
 
-for(const producto of carrito){
-    let contenedor = document.getElementById("contenedor")
-    let main = document.createElement("div")
-    main.innerHTML = `<div class="card" style="width: 18rem; height:27rem;">
-    <img src="${producto.imagen}" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title" style="text-align: center">${producto.nombre}</h5>
-      <p class="card-text" style="text-align: center">$${producto.precio * producto.cantidadSeleccionada}</p>
-    </div>
-    </div>`
-    contenedor.append(main)
-}
+    guardarEnStorage() {
+        let listaCarritoJson = JSON.stringify(this.listaCarrito)
+        localStorage.setItem("lista carrito", listaCarritoJson)
+    }
+    recuperarStorage() {
+        let listaCarritoJson = localStorage.getItem("lista carrito")
+        let listaCarritoJs = JSON.parse(listaCarritoJson)
+        let listaAuxiliar = []
+        listaCarritoJs.forEach(producto => {
+            let productoNuevo = new Producto(producto.id, producto.nombre, producto.precio, producto.descripcion, producto.imagen)
+            listaAuxiliar.push(productoNuevo)
+        })
+        this.listaCarrito = listaAuxiliar
+    }
+    eliminar(productoAeliminar) {
+        let indice = this.listaCarrito.findIndex(producto => producto.id == productoAeliminar.id)
 
+        if (productoAeliminar.cantidad > 1) {
+            productoAeliminar.cantidad--
 
-let boton = document.createElement("button")
-boton.innerText = "Pagar"
-boton.className = "btn btn-primary mb-2"
-let container = document.getElementById("contenedor-boton")
-container.append(boton)
+        } else {
+            this.listaCarrito.splice(indice, 1)
+        }
+    }
+    mostrarEnDom() {
+        let contenedor_carrito = document.getElementById("contenedor_carrito")
+        contenedor_carrito.innerHTML = ""
+        this.listaCarrito.forEach(producto => {
+            contenedor_carrito.innerHTML += producto.descripcionCarrito()
+        })
+        this.eventoVaciarCarrito()
+        this.eventoEliminarProducto()
+        this.eventoPagar()
+        this.eventoMostrarTotal()
+    }
+    eventoVaciarCarrito() {
+        const eliminarCarrito = document.getElementById("btn_vaciar")
+        eliminarCarrito.addEventListener("click", () => {
+            this.mensajeBorrar()
+        })
+    }
+    eventoEliminarProducto() {
+        this.listaCarrito.forEach(producto => {
+            const btn_eliminar = document.getElementById(`ep-${producto.id}`)
 
-const resultado = carrito.reduce((total, producto) => total + producto.precio * producto.cantidadSeleccionada, 0)
-let total = document.getElementById("total")
-total.innerHTML = "<h4> TOTAL  $" + resultado + "</h4>"
-container.append(total)
+            btn_eliminar.addEventListener("click", () => {
+                this.eliminar(producto)
+                this.guardarEnStorage()
+                this.mostrarEnDom()
+            })
 
-boton.addEventListener("click", () => {
-    Swal.fire({
-        title: 'Desea realizar el pago?',
-        text: "",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Pagar',
-        cancelButtonText: "Cancelar"
-    }).then((result) => {
-        setTimeout(() =>{
+        })
+    }
+    eventoPagar() {
+        const pagar = document.getElementById("btn_pagar")
+
+        pagar.addEventListener("click", () => {
+            this.pagar()
+            this.mensajePagar()
+            this.vaciarCarrito()
+            this.mostrarEnDom()
+        })
+    }
+    eventoMostrarTotal() {
+        const total = document.getElementById("total")
+        total.innerText = `Total: $ ${carrito.pagar()} `
+    }
+    vaciarCarrito() {
+        this.listaCarrito = []
+    }
+    pagar() {
+        return this.listaCarrito.reduce((acumulador, producto) => acumulador + producto.precio * producto.cantidad, 0)
+    }
+    mensajeBorrar() {
+        Swal.fire({
+            title: 'Estas seguro que desear eliminar tu carrito?',
+            text: "No habra posibilidad de recuperarlo",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
             if (result.isConfirmed) {
+                this.vaciarCarrito()
+                this.mostrarEnDom()
                 Swal.fire(
-                  'El pago se ha realizado exitosamente!',
+                    'Borrado!',
                 )
-              }
-        }, 2000)
-    })
-})
+            }
+        })
+    }
+    mensajePagar() {
+        Swal.fire({
+            title: 'Desea confirmar el Pago?',
+            text: "",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Pagar',
+            cancelButtonText: 'Cancelar'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                setTimeout(() => {
+                    Swal.fire(
+                        setTimeout(this.cerrarModal, 5000),
+                        'Su pago ha sido realizado',
+                        'Muchas Gracias')
+                }, 2000)
+            }
+        })
+    }
+}
 
+const CP = new ProductoController()
+const carrito = new Carrito()
+
+carrito.recuperarStorage()
+carrito.mostrarEnDom()
+
+CP.cargarProducto()
+CP.mostrarEnDom()
