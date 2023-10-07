@@ -7,7 +7,6 @@ class Producto {
         this.imagen = imagen
         this.cantidad = cantidad
     }
-
     descripcionCarrito() {
         return `
         <div class="card mb-3" style="max-width: 540px;">
@@ -22,14 +21,18 @@ class Producto {
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                     <path d="M12 5l0 14" />
                     <path d="M5 12l14 0" />
-                  </svg></button> ${this.cantidad}</p>
+                  </svg></button> ${this.cantidad} <button id="de-${this.id}" style="height: 1.8rem"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-minus" width="12" height="12" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                  <path d="M5 12l14 0" />
+                </svg></p> 
+                </svg></button>
                     <p class="card-text">Precio $${this.precio}</p> 
                 </div>
                 <button id="ep-${this.id}"class="btn_tacho"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash-filled" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                 <path d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16z" stroke-width="0" fill="currentColor" />
                 <path d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" stroke-width="0" fill="currentColor" />
-              </svg></button
+              </svg></button>
             </div>
         </div>
         </div>`
@@ -108,7 +111,6 @@ class Carrito {
 
 
     }
-
     guardarEnStorage() {
         let listaCarritoJson = JSON.stringify(this.listaCarrito)
         localStorage.setItem("lista carrito", listaCarritoJson)
@@ -143,7 +145,8 @@ class Carrito {
         this.listaCarrito.forEach(producto => {
             contenedor_carrito.innerHTML += producto.descripcionCarrito()
         })
-        
+        this.eventoDecrementar()
+        this.eventoIncrementar()
         this.eventoVaciarCarrito()
         this.eventoEliminarProducto()
         this.eventoPagar()
@@ -156,6 +159,30 @@ class Carrito {
             this.vaciarCarrito()
             this.guardarEnStorage()
             this.mostrarEnDom()
+        })
+    }
+    eventoIncrementar(){
+        this.listaCarrito.forEach(producto => {
+            const btn_incrementar = document.getElementById(`in-${producto.id}`)
+
+            btn_incrementar.addEventListener("click", () => {
+                producto.cantidad++
+                this.guardarEnStorage()
+                this.mostrarEnDom()
+            })
+        })
+    }
+    eventoDecrementar(){
+        this.listaCarrito.forEach(producto => {
+            const btn_disminuir = document.getElementById(`de-${producto.id}`)
+
+            btn_disminuir.addEventListener("click", () => {
+                if(producto.cantidad > 1){
+                    producto.cantidad--
+                }
+                this.guardarEnStorage()
+                this.mostrarEnDom()
+            })
         })
     }
     eventoEliminarProducto() {

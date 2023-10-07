@@ -1,13 +1,12 @@
 body{
     background-color: black;
 }
+a {
+    text-decoration: none;
+}
 .titulo {
     color: #ffffff;
     text-align: center;
-}
-a {
-    text-decoration: none;
-    
 }
 .header{
     display: flex;
