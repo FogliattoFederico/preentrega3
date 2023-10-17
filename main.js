@@ -60,10 +60,10 @@ class ProductoController {
         this.listaProductos = []
     }
     async prepararContenedorProductos() {
-       let listaProductosJson = await fetch("apiProductos.json")
-       let listaProductosJs = await listaProductosJson.json()
+        let listaProductosJson = await fetch("apiProductos.json")
+        let listaProductosJs = await listaProductosJson.json()
 
-        listaProductosJs.forEach(producto =>{
+        listaProductosJs.forEach(producto => {
             let nuevoProducto = new Producto(producto.id, producto.nombre, producto.precio, producto.descripcion, producto.imagen, producto.cantidad)
             this.agregar(nuevoProducto)
         })
@@ -117,16 +117,20 @@ class Carrito {
 
     }
     recuperarStorage() {
-        if (this.listaCarrito !== 0) {
+        let listaCarritoJson = localStorage.getItem("lista carrito")
+        
+        if (listaCarritoJson) {
 
-            let listaCarritoJson = localStorage.getItem("lista carrito")
             let listaCarritoJs = JSON.parse(listaCarritoJson)
             let listaAuxiliar = []
+            
             listaCarritoJs.forEach(producto => {
                 let productoNuevo = new Producto(producto.id, producto.nombre, producto.precio, producto.descripcion, producto.imagen, producto.cantidad)
                 listaAuxiliar.push(productoNuevo)
             })
             this.listaCarrito = listaAuxiliar
+        }else{
+            this.listaCarrito = []
         }
     }
     eliminar(productoAeliminar) {
@@ -161,7 +165,7 @@ class Carrito {
             this.mostrarEnDom()
         })
     }
-    eventoIncrementar(){
+    eventoIncrementar() {
         this.listaCarrito.forEach(producto => {
             const btn_incrementar = document.getElementById(`in-${producto.id}`)
 
@@ -172,12 +176,12 @@ class Carrito {
             })
         })
     }
-    eventoDecrementar(){
+    eventoDecrementar() {
         this.listaCarrito.forEach(producto => {
             const btn_disminuir = document.getElementById(`de-${producto.id}`)
 
             btn_disminuir.addEventListener("click", () => {
-                if(producto.cantidad > 1){
+                if (producto.cantidad > 1) {
                     producto.cantidad--
                 }
                 this.guardarEnStorage()
@@ -237,7 +241,6 @@ class Carrito {
     mensajePagar() {
         Swal.fire({
             title: 'Desea confirmar el Pago?',
-            text: "",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -246,12 +249,12 @@ class Carrito {
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                setTimeout(() => {
-                    Swal.fire(
-                        setTimeout(this.cerrarModal, 5000),
-                        'Su pago ha sido realizado',
-                        'Muchas Gracias')
-                }, 2000)
+                setTimeout(() => Swal.fire(
+                    'Pagado!',
+                    'Muchas gracias por su compra',
+                    'success'
+                ), 2000)
+
             }
         })
     }
